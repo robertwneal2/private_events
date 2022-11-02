@@ -25,6 +25,15 @@
       } %>
     </h2>
   <% end %>
+
+  <% if current_user %>
+    <% if current_user.attended_events.include?(@event) %>
+      <%= button_to 'Unattend Event', event_attendee_path, params: {event_id: @event.id}, method: :delete %>
+    <% else %>
+      <%= button_to 'Attend Event', event_attendees_path, params: {event_id: @event.id} %>
+    <% end %>
+  <% end %>
+
   <h2> Attendees: </h2>
   <ul>  
     <% @event.attendees.each do |attendee| %>
