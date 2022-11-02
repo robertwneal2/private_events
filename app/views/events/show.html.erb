@@ -16,5 +16,14 @@
   <h2><%= "When: #{@event.date}" %></h2>
   <h2><%= "Where: #{@event.location}" %></h2>
   <h2>Creator: <%= link_to user.email, user %></h2>
+  <% if current_user == @event.creator%>
+    <h2><%= link_to "Edit", edit_event_path(@event) %></h2>
+    <h2>
+      <%= link_to "Destroy", event_path(@event), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %>
+    </h2>
+  <% end %>
 </body>
 </html>

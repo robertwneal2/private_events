@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :edit]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @events = Event.all
@@ -20,6 +21,36 @@ class EventsController < ApplicationController
       redirect_to @event
     else 
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      redirect_to @event
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+
+    redirect_to root_path, status: :see_other
+  end
+
+  private
+
+  def correct_user
+    @event = Event.find_by(id: params[:id])
+    unless current_user == @event.creator
+      redirect_to user_path(current_user)
     end
   end
 
