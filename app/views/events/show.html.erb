@@ -8,11 +8,13 @@
 </head>
 <body>
   <div class="header">
-    <%= render "header" %>
+    <%= render "shared/header" %>
   </div>
 
+  <% user = @event.creator%>
   <h1><%= @event.name %></h1>
   <h2><%= "When: #{@event.date}" %></h2>
   <h2><%= "Where: #{@event.location}" %></h2>
+  <h2>Creator: <%= link_to user.email, user %></h2>
 </body>
 </html>
