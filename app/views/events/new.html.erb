@@ -10,20 +10,7 @@
   <div class="header">
     <%= render "shared/header" %>
   </div>  
-  <%= form_with model: @event do |form| %>
-    <div>
-      <%= label(:event, :name, "Name:") %>
-      <%= text_field(:event, :name) %>
-    </div>
-    <div>
-      <%= label(:event, :date, "Date:") %>
-      <%= date_field(:event, :date) %>
-    </div>
-    <div>
-      <%= label(:event, :location, "Location:") %>
-      <%= text_field(:event, :location) %>
-    </div>
-    <%= form.submit %>
-  <% end %>
+  <h1>Creat Event</h1>
+  <%= render "form", event: @event %>
 </body>
 </html>
