@@ -1,4 +1,9 @@
 <% if current_user %>
+<div>
+<% unless current_page?(events_path)%>
+  <%= link_to "All Events", events_path %>
+<% end %>
+</div>
 <%= "Signed in user: #{current_user.email}" %>
 <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
 <% else %>
