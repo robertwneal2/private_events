@@ -11,10 +11,18 @@
     <%= render "shared/header" %>
   </div> 
 
-  <h1>All Events</h1>
   <%= link_to "Create New Event", new_event_path %>
+  <h1>Past Events</h1>
   <ul>
-    <% @events.each do |event| %>
+    <% @past_events.each do |event| %>
+      <li>
+        <%= link_to event.name, event %>
+      </li>
+    <% end %>
+  </ul>
+  <h1>Upcoming Events</h1>
+  <ul>
+    <% @upcoming_events.each do |event| %>
       <li>
         <%= link_to event.name, event %>
       </li>

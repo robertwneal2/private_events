@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @past_events = Event.past
+    @upcoming_events = Event.upcoming
   end
 
   def show
